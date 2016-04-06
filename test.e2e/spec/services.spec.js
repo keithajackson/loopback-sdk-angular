@@ -37,7 +37,7 @@ define(['angular', 'given', 'util'], function(angular, given, util) {
                     // resolve the promise immediately
                     deferred.resolve();
                     return config;
-                  }
+                  },
                 };
               });
           },
@@ -69,8 +69,8 @@ define(['angular', 'given', 'util'], function(angular, given, util) {
           {
             name: moduleName,
             models: {
-              MyModel: { name: { type: String, required: true } }
-            }
+              MyModel: { name: { type: String, required: true } },
+            },
           })
           .then(function(_createInjector) {
             setTestAngularModuleConfig();
@@ -266,8 +266,8 @@ define(['angular', 'given', 'util'], function(angular, given, util) {
         return given.servicesForLoopBackApp(
           {
             models: {
-              MyModel: { name: { type: String, required: true } }
-            }
+              MyModel: { name: { type: String, required: true } },
+            },
           })
           .then(function(createInjector) {
             $injector = createInjector();
@@ -315,7 +315,7 @@ define(['angular', 'given', 'util'], function(angular, given, util) {
         var arr = MyModel.createMany([
          { name: 'one', multi: true },
          { name: 'two', multi: true },
-         { name: 'three', multi: true }
+         { name: 'three', multi: true },
         ],
         function() {
           expect(arr).to.have.property('length', 3);
@@ -393,7 +393,7 @@ define(['angular', 'given', 'util'], function(angular, given, util) {
           'deleteById',
           'removeById',
           'count',
-          'prototype$updateAttributes'
+          'prototype$updateAttributes',
         ]);
       });
 
@@ -408,8 +408,8 @@ define(['angular', 'given', 'util'], function(angular, given, util) {
         return given.servicesForLoopBackApp(
           {
             models: {
-              'lower-case-not-an-identifier': {}
-            }
+              'lower-case-not-an-identifier': {},
+            },
           })
           .then(function(createInjector) {
             $injector = createInjector();
@@ -439,7 +439,7 @@ define(['angular', 'given', 'util'], function(angular, given, util) {
                 {
                   isStatic: false,
                   http: { path: '/spaces', verb: 'get' },
-                  returns: { arg: 'spaces', type: 'array', root: true }
+                  returns: { arg: 'spaces', type: 'array', root: true },
                 }
               );
               cb();
@@ -472,18 +472,18 @@ define(['angular', 'given', 'util'], function(angular, given, util) {
                     accessTokens: {
                       model: 'AccessToken',
                       type: 'hasMany',
-                      foreignKey: 'userId'
-                    }
-                  }
-                }
+                      foreignKey: 'userId',
+                    },
+                  },
+                },
               },
               product: {
                 properties: {
-                  model: String
-                }
-              }
+                  model: String,
+                },
+              },
             },
-            enableAuth: true
+            enableAuth: true,
           })
           .then(function(_createInjector) {
             createInjector = _createInjector;
@@ -709,7 +709,7 @@ define(['angular', 'given', 'util'], function(angular, given, util) {
       function givenLoggedInUser(email, loginParams) {
         var credentials = {
           email: email || 'user-' + (++idCounter) + '@example.com',
-          password: 'a-password'
+          password: 'a-password',
         };
 
         return Customer.create(credentials).$promise
@@ -730,7 +730,7 @@ define(['angular', 'given', 'util'], function(angular, given, util) {
                 // use the built-in User model
               },
             },
-            enableAuth: true
+            enableAuth: true,
           })
           .then(function(createInjector) {
             $injector = createInjector();
@@ -761,10 +761,10 @@ define(['angular', 'given', 'util'], function(angular, given, util) {
                   relations: {
                     categories: {
                       model: 'Category',
-                      type: 'hasAndBelongsToMany'
-                    }
-                  }
-                }
+                      type: 'hasAndBelongsToMany',
+                    },
+                  },
+                },
               },
               Category: {
                 properties: { name: 'string' },
@@ -772,11 +772,11 @@ define(['angular', 'given', 'util'], function(angular, given, util) {
                   relations: {
                     products: {
                       model: 'Product',
-                      type: 'hasAndBelongsToMany'
-                    }
-                  }
-                }
-              }
+                      type: 'hasAndBelongsToMany',
+                    },
+                  },
+                },
+              },
             },
             setupFn: (function(app, cb) {
               /*globals debug:true */
@@ -794,12 +794,12 @@ define(['angular', 'given', 'util'], function(angular, given, util) {
 
                     cb(null, {
                       product: prod,
-                      category: cat
+                      category: cat,
                     });
                   });
                 });
               });
-            }).toString()
+            }).toString(),
           })
           .then(function(createInjector) {
             $injector = createInjector();
@@ -822,7 +822,7 @@ define(['angular', 'given', 'util'], function(angular, given, util) {
             'findById',
             'link',
             'unlink',
-            'updateById'
+            'updateById',
           ]);
       });
 
@@ -861,7 +861,7 @@ define(['angular', 'given', 'util'], function(angular, given, util) {
           .then(function(cat) {
             return Product.categories.unlink({
               id: testData.product.id,
-              fk: cat.id
+              fk: cat.id,
             }).$promise;
           })
           .then(function() {
@@ -879,7 +879,7 @@ define(['angular', 'given', 'util'], function(angular, given, util) {
             return Product.categories.link(
               {
                 id: testData.product.id,
-                fk: cat.id
+                fk: cat.id,
               },
               // IMPORTANT: we must pass an empty postData arg, otherwise
               // both id and fk are sent in the request body and the "id" value
@@ -901,7 +901,7 @@ define(['angular', 'given', 'util'], function(angular, given, util) {
           [
             { name: 'another-cat' },
             { name: 'yet-another-cat' },
-            { name: 'last-cat' }
+            { name: 'last-cat' },
           ],
           function() {
             expect(cats).to.have.property('length', 3);
@@ -946,10 +946,10 @@ define(['angular', 'given', 'util'], function(angular, given, util) {
                   relations: {
                     country: {
                       model: 'Country',
-                      type: 'belongsTo'
-                    }
-                  }
-                }
+                      type: 'belongsTo',
+                    },
+                  },
+                },
               },
               Country: {
                 properties: { name: 'string' },
@@ -957,11 +957,11 @@ define(['angular', 'given', 'util'], function(angular, given, util) {
                   relations: {
                     towns: {
                       model: 'Town',
-                      type: 'hasMany'
-                    }
-                  }
-                }
-              }
+                      type: 'hasMany',
+                    },
+                  },
+                },
+              },
             },
             setupFn: (function(app, cb) {
               /*globals debug:true */
@@ -982,14 +982,14 @@ define(['angular', 'given', 'util'], function(angular, given, util) {
 
                         cb(null, {
                           country: country,
-                          town: town
+                          town: town,
                         });
                       });
                     }
                   );
                 }
               );
-            }).toString()
+            }).toString(),
           })
           .then(function(createInjector) {
             $injector = createInjector();
