@@ -134,7 +134,7 @@ masterApp.get('/services', function(req, res, next) {
 });
 
 masterApp.use('/api', function(res, req, next) {
-  if(!lbApp) return next(new Error('Call /setup first.'));
+  if (!lbApp) return next(new Error('Call /setup first.'));
   lbApp(res, req, next);
 });
 
