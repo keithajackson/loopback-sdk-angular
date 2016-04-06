@@ -13,12 +13,8 @@ var morgan = require('morgan');
 var errorHandler = require('errorhandler');
 
 var port = process.env.PORT || 3838;
-var baseUrl;
-var apiUrl;
+var baseUrl, apiUrl, lbApp, servicesScript;
 var masterApp = express();
-
-var lbApp;
-var servicesScript;
 
 // Speed up the password hashing algorithm
 // for tests using the built-in User model
@@ -116,7 +112,6 @@ masterApp.post('/setup', function(req, res, next) {
 
     res.send(200, { servicesUrl: baseUrl + 'services?' + name });
   }.bind(this));
-
 });
 
 function compileSetupFn(name, source) {
